@@ -3,7 +3,6 @@ package com.example.demoJDBC;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,4 +35,10 @@ public class EmployeeServices {
         String mutation = "DELETE FROM employee WHERE id = ?";
         jdbcTemplate.update(mutation,id);
     }
+
+    public int updateEmployee(@NotNull Employee employee, @NotNull int id) {
+        String mutation = "UPDATE employee SET name = ?, position = ?, salary = ? WHERE id = ?";
+        return jdbcTemplate.update(mutation, employee.getName(), employee.getPosition(), employee.getSalary(), id);
+    }
+
 }
