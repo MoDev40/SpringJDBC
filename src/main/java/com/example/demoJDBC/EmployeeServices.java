@@ -31,4 +31,9 @@ public class EmployeeServices {
         String query = "SELECT * FROM employee WHERE id = ?";
         return jdbcTemplate.queryForObject(query,new Object[]{id},new BeanPropertyRowMapper<>(Employee.class));
     }
+
+    public void deleteEmployee(@NotNull int id){
+        String mutation = "DELETE FROM employee WHERE id = ?";
+        jdbcTemplate.update(mutation,id);
+    }
 }
