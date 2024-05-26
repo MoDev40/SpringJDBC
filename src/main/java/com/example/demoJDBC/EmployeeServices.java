@@ -26,4 +26,9 @@ public class EmployeeServices {
         String mutation = "INSERT INTO employee  (name, position, salary)  values(?,?,?)";
         jdbcTemplate.update(mutation,employee.getName(),employee.getPosition(),employee.getSalary());
     }
+
+    public Employee employee(@NotNull int id){
+        String query = "SELECT * FROM employee WHERE id = ?";
+        return jdbcTemplate.queryForObject(query,new Object[]{id},new BeanPropertyRowMapper<>(Employee.class));
+    }
 }

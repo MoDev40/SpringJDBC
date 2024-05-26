@@ -22,4 +22,9 @@ public class EmployeeController {
     public  void registerEmployee(@RequestBody Employee employee){
         employeeServices.registerEmployee(employee);
     }
+
+    @GetMapping("/{id}")
+    public Employee singleEmployee(@PathVariable int id){
+        return  employeeServices.employee(id);
+    }
 }
