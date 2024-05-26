@@ -1,8 +1,6 @@
 package com.example.demoJDBC;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,8 +13,13 @@ public class EmployeeController {
         this.employeeServices = employeeServices;
     }
 
-    @GetMapping("/")
+    @GetMapping()
     public List<Employee> getEmployees(){
         return employeeServices.employees();
+    }
+
+    @PostMapping("register")
+    public  void registerEmployee(@RequestBody Employee employee){
+        employeeServices.registerEmployee(employee);
     }
 }
